@@ -17,7 +17,7 @@
 ### along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ### 
 
-cd /sNow
+cd /root
 git clone http://bitbucket.org/hpcnow/snow-tools.git
 cd snow-tools
 wget -O snow.conf "https://raw.githubusercontent.com/HPCNow/snow-ci/master/debian/snow.conf" --no-check-certificate
