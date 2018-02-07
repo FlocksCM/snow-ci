@@ -18,13 +18,13 @@
 ### 
 
 cd /root
-git clone http://bitbucket.org/hpcnow/snow-tools.git
-cd snow-tools
+#git clone http://bitbucket.org/hpcnow/snow-tools.git
+#cd snow-tools
 wget -O snow.conf "https://raw.githubusercontent.com/HPCNow/snow-ci/master/debian/snow.conf" --no-check-certificate
 if [[ -e /sNow/snow-tools/etc/snow.conf ]]; then
     wget -O /etc/network/interfaces "https://raw.githubusercontent.com/HPCNow/snow-ci/master/debian/interfaces_snow02" --no-check-certificate
 else
     wget -O /etc/network/interfaces "https://raw.githubusercontent.com/HPCNow/snow-ci/master/debian/interfaces_snow01" --no-check-certificate
 fi
-./install.sh
+#./install.sh
 
