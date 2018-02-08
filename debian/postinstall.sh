@@ -16,7 +16,7 @@
 ### You should have received a copy of the GNU General Public License
 ### along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ### 
-$version=release-1.1.13
+version=release-1.1.13
 cd /root
 git clone http://bitbucket.org/hpcnow/snow-tools.git -b $version
 cd snow-tools
