@@ -16,15 +16,16 @@
 ### You should have received a copy of the GNU General Public License
 ### along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ### 
-
+$version=release-1.1.13
 cd /root
-#git clone http://bitbucket.org/hpcnow/snow-tools.git
-#cd snow-tools
+git clone http://bitbucket.org/hpcnow/snow-tools.git -b $version
+cd snow-tools
 wget -O snow.conf "https://raw.githubusercontent.com/HPCNow/snow-ci/master/debian/snow.conf" --no-check-certificate
 if [[ -e /sNow/snow-tools/etc/snow.conf ]]; then
     wget -O /etc/network/interfaces "https://raw.githubusercontent.com/HPCNow/snow-ci/master/debian/interfaces_snow02" --no-check-certificate
 else
     wget -O /etc/network/interfaces "https://raw.githubusercontent.com/HPCNow/snow-ci/master/debian/interfaces_snow01" --no-check-certificate
 fi
-#./install.sh
+export SNOW_EULA=accepted
+./install.sh $version
 
