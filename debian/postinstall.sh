@@ -16,10 +16,19 @@
 ### You should have received a copy of the GNU General Public License
 ### along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ### 
-cd /root
+cd /root/snow-tools
 wget -O snow.conf "https://raw.githubusercontent.com/HPCNow/snow-ci/master/debian/snow.conf" --no-check-certificate
 if [[ -e /sNow/snow-tools/etc/snow.conf ]]; then
     wget -O /etc/network/interfaces "https://raw.githubusercontent.com/HPCNow/snow-ci/master/debian/interfaces_snow02" --no-check-certificate
 else
     wget -O /etc/network/interfaces "https://raw.githubusercontent.com/HPCNow/snow-ci/master/debian/interfaces_snow01" --no-check-certificate
 fi
+
+cd /root
+wget -O hosts "https://raw.githubusercontent.com/HPCNow/snow-ci/master/debian/hosts" --no-check-certificate
+cat ./hosts >> /etc/hosts
+wget -O corosync.conf "https://raw.githubusercontent.com/HPCNow/snow-ci/master/debian/corosync.conf" --no-check-certificate
+wget -O active-domains.conf "https://raw.githubusercontent.com/HPCNow/snow-ci/master/debian/active-domains.conf" --no-check-certificate
+wget -O setup_domains_ha.sh "https://raw.githubusercontent.com/HPCNow/snow-ci/master/debian/setup_domains_ha.sh" --no-check-certificate
+chmod 700 setup_domains_ha.sh
+
