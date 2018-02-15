@@ -2,6 +2,9 @@
 domain_list=$(snow list domains | egrep -v "Domain|------" | gawk '{print $1}')
 crm_attribute --type op_defaults --attr-name timeout --attr-value 120s
 rm -f pacemaker.cfg
+echo "property stonith-enabled=no" > pacemaker.cfg
+echo "property no-quorum-policy=ignore" >>  pacemaker.cfg
+echo "property default-resource-stickiness=100" >> pacemaker.cfg
 for domain in ${domain_list} do
     echo "primitive $domain ocf:heartbeat:Xen \\
           params xmfile=\"/sNow/snow-tools/etc/domains/$domain.cfg\" \\
