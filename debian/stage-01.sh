@@ -46,7 +46,6 @@ cp -p /root/snow-ci/debian/snow.conf /sNow/snow-tools/etc/
 cp -p /root/snow-ci/debian/active-domains.conf /sNow/snow-tools/etc/
 source /etc/profile.d/snow.sh
 snow init
-cp -p /root/snow-ci/debian/stage-02.sh /usr/local/first_boot/
 
 ### Enable stage 02
 systemctl enable first_boot
