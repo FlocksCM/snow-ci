@@ -17,27 +17,18 @@
 ### along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ### 
 
-
-### sNow Servers Configuration
-cd /root/snow-tools
-wget -O snow.conf "https://raw.githubusercontent.com/HPCNow/snow-ci/master/debian/snow.conf" --no-check-certificate
-if [[ -e /sNow/snow-tools/etc/snow.conf ]]; then
-    wget -O /etc/network/interfaces "https://raw.githubusercontent.com/HPCNow/snow-ci/master/debian/interfaces_snow02" --no-check-certificate
-else
-    wget -O /etc/network/interfaces "https://raw.githubusercontent.com/HPCNow/snow-ci/master/debian/interfaces_snow01" --no-check-certificate
-fi
-
+### Fetching CI setup
 cd /root
 git clone https://github.com/HPCNow/snow-ci
-wget -O hosts "https://raw.githubusercontent.com/HPCNow/snow-ci/master/debian/hosts" --no-check-certificate
+
+### sNow Servers Configuration
+cd /root/snow-ci/debian
+if [[ -e /sNow/snow-tools/etc/snow.conf ]]; then
+    cp -p interfaces_snow02 /etc/network/interfaces 
+else
+    cp -p interfaces_snow01 /etc/network/interfaces 
+fi
 cat ./hosts >> /etc/hosts
-
-### HA Configuration
-wget -O corosync.conf "https://raw.githubusercontent.com/HPCNow/snow-ci/master/debian/corosync.conf" --no-check-certificate
-wget -O active-domains.conf "https://raw.githubusercontent.com/HPCNow/snow-ci/master/debian/active-domains.conf" --no-check-certificate
-wget -O setup_domains_ha.sh "https://raw.githubusercontent.com/HPCNow/snow-ci/master/debian/setup_domains_ha.sh" --no-check-certificate
-chmod 700 setup_domains_ha.sh
-
 
 ### BeeGFS Repositories
 cd /etc/apt/sources.list.d/
