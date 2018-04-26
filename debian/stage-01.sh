@@ -47,5 +47,11 @@ cp -p /root/snow-ci/debian/active-domains.conf /sNow/snow-tools/etc/
 source /etc/profile.d/snow.sh
 snow init
 cp -p /root/snow-ci/debian/stage-02.sh /usr/local/first_boot/
-systemctl enable first_boot.service
+
+### Enable stage 02
+systemctl enable first_boot
+rm -f /usr/local/first_boot/stage-01.sh
+cp -p /root/snow-ci/debian/stage-02.sh /usr/local/first_boot/
+
+### Reboot the system with new kernel and configuration
 reboot
