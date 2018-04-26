@@ -23,16 +23,16 @@ iface xsnow0 inet static
     	address 10.1.0.1
     	netmask 255.255.0.0
     	network 10.1.0.0
-    	broadcast 10.1.0.255
+    	broadcast 10.1.254.255
 
 # Alias to access the IPMI interfaces on the compute nodes
 # which are also connected to the internal network
 auto xsnow0:mgmt
 iface xsnow0:mgmt inet static
-    	address 10.0.0.1
+    	address 10.10.0.1
     	netmask 255.255.0.0
-    	network 10.0.0.0
-    	broadcast 10.0.0.255
+    	network 10.10.0.0
+    	broadcast 10.10.254.255
 
 # The public network bridge with the NAT rules
 auto xpub0
