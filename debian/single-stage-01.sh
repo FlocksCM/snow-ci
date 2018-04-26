@@ -27,7 +27,7 @@ export SNOW_EULA=accepted
 #apt install linux-headers-$(uname -r) -y
 
 ### sNow! Configuration
-cp -p /root/snow-ci/debian/snow.conf /sNow/snow-tools/etc/
+cp -p /root/snow-ci/debian/single-snow.conf /sNow/snow-tools/etc/snow.conf
 cp -p /root/snow-ci/debian/active-domains.conf /sNow/snow-tools/etc/
 source /etc/profile.d/snow.sh
 snow init

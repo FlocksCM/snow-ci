@@ -47,7 +47,7 @@ export SNOW_EULA=accepted
 
 ### sNow! Configuration
 if [[ ! -e /sNow/snow-tools/etc/snow.conf ]]; then
-    cp -p /root/snow-ci/debian/snow.conf /sNow/snow-tools/etc/
+    cp -p /root/snow-ci/debian/ha-snow.conf /sNow/snow-tools/etc/snow.conf
     cp -p /root/snow-ci/debian/active-domains.conf /sNow/snow-tools/etc/
     source /etc/profile.d/snow.sh
     snow init
