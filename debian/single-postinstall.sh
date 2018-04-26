@@ -1,6 +1,6 @@
 #!/bin/bash
 ###
-### Contents Debian Stretch automatic deployment of sNow! in HA to conduct CI
+### Contents Debian Stretch automatic deployment of sNow! to conduct CI
 ### Copyright (C) 2018  Jordi Blasco <jordi.blasco@hpcnow.com>
 ###
 ### This program is free software: you can redistribute it and/or modify
@@ -23,17 +23,9 @@ git clone https://github.com/HPCNow/snow-ci
 
 ### sNow Servers Configuration
 cd /root/snow-ci/debian
-if [[ -e /sNow/snow-tools/etc/snow.conf ]]; then
-    cp -p interfaces_snow02 /etc/network/interfaces 
-else
-    cp -p interfaces_snow01 /etc/network/interfaces 
-fi
+cp -p interfaces_snow01 /etc/network/interfaces 
 cat ./hosts >> /etc/hosts
 
-### BeeGFS Repositories
-cd /etc/apt/sources.list.d/
-wget https://www.beegfs.io/release/latest-stable/dists/beegfs-deb9.list
-wget -q https://www.beegfs.io/release/latest-stable/gpg/DEB-GPG-KEY-beegfs -O- | apt-key add -
 apt update
 apt upgrade -y
 
@@ -46,6 +38,6 @@ chmod 700 /usr/local/first_boot
 chown root /usr/local/first_boot
 
 ### Enable stage 01
-cp -p /root/snow-ci/debian/stage-01.sh /usr/local/first_boot/
-chmod 700 /usr/local/first_boot/stage-01.sh
+cp -p /root/snow-ci/debian/single-stage-01.sh /usr/local/first_boot/
+chmod 700 /usr/local/first_boot/single-stage-01.sh
 systemctl enable first_boot
