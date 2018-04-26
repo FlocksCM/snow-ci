@@ -35,22 +35,27 @@ mount /home
 mount /sNow
 
 ### sNow! Installation
-cd /sNow/
-git clone http://bitbucket.org/hpcnow/snow-tools.git
-cd snow-tools
+cd /root/snow-ci/debian
+if [[ ! -e /sNow/snow-tools/etc/snow.conf ]]; then
+    cd /sNow/
+    git clone http://bitbucket.org/hpcnow/snow-tools.git
+fi
+cd /sNow/snow-tools
 export NFS_SERVER=beegfs01
 ./install.sh
 
 ### sNow! Configuration
-cp -p /root/snow-ci/debian/snow.conf /sNow/snow-tools/etc/
-cp -p /root/snow-ci/debian/active-domains.conf /sNow/snow-tools/etc/
+if [[ ! -e /sNow/snow-tools/etc/snow.conf ]]; then
+    cp -p /root/snow-ci/debian/snow.conf /sNow/snow-tools/etc/
+    cp -p /root/snow-ci/debian/active-domains.conf /sNow/snow-tools/etc/
+fi
 source /etc/profile.d/snow.sh
 snow init
 
 ### Enable stage 02
-systemctl enable first_boot
-rm -f /usr/local/first_boot/stage-01.sh
-cp -p /root/snow-ci/debian/stage-02.sh /usr/local/first_boot/
+#systemctl enable first_boot
+#rm -f /usr/local/first_boot/stage-01.sh
+#cp -p /root/snow-ci/debian/stage-02.sh /usr/local/first_boot/
 
 ### Reboot the system with new kernel and configuration
 reboot
