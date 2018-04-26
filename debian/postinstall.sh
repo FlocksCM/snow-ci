@@ -28,6 +28,7 @@ else
 fi
 
 cd /root
+git clone https://github.com/HPCNow/snow-ci
 wget -O hosts "https://raw.githubusercontent.com/HPCNow/snow-ci/master/debian/hosts" --no-check-certificate
 cat ./hosts >> /etc/hosts
 
@@ -38,13 +39,21 @@ wget -O setup_domains_ha.sh "https://raw.githubusercontent.com/HPCNow/snow-ci/ma
 chmod 700 setup_domains_ha.sh
 
 
-### BeeGFS Configuration
+### BeeGFS Repositories
 cd /etc/apt/sources.list.d/
 wget https://www.beegfs.io/release/latest-stable/dists/beegfs-deb9.list
 wget -q https://www.beegfs.io/release/latest-stable/gpg/DEB-GPG-KEY-beegfs -O- | apt-key add -
 apt update
 apt upgrade -y
-echo "
-/beegfs/snow/testing/home                     /home          none  noauto,x-systemd.automount,x-systemd.device-timeout=60,_netdev,bind,x-systemd.requires=/beegfs/snow/testing/home   0 0
-/beegfs/snow/testing/sNow                     /sNow          none  noauto,x-systemd.automount,x-systemd.device-timeout=60,_netdev,bind,x-systemd.requires=/beegfs/snow/testing/sNow 0 0
-" >> /etc/fstab
+
+### Enable First Boot actions
+cp -p /root/snow-ci/debian/first_boot.service /lib/systemd/system/
+cp -p /root/snow-ci/debian/first_boot /usr/local/bin/first_boot
+chmod 700 /usr/local/bin/first_boot
+mkdir -p /usr/local/first_boot
+chmod 700 /usr/local/first_boot
+chown root /usr/local/first_boot
+systemctl enable first_boot
+
+### Enable stage 01
+cp -p /root/snow-ci/debian/stage-01.sh /usr/local/first_boot/
