@@ -58,8 +58,8 @@ fi
 
 ### Enable stage 02
 #systemctl enable first_boot
-#rm -f /usr/local/first_boot/stage-01.sh
-#cp -p /root/snow-ci/debian/stage-02.sh /usr/local/first_boot/
+#rm -f /usr/local/first_boot/ha-stage-01.sh
+#cp -p /root/snow-ci/debian/ha-stage-02.sh /usr/local/first_boot/
 
 ### Reboot the system with new kernel and configuration
 reboot
