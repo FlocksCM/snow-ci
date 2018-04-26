@@ -18,7 +18,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 sNow! Cluster Suite is an opensource project developed by Jordi Blasco <jordi.blasco@hpcnow.com>
 For more information, visit the official website: www.hpcnow.com/snow
 ```
-# sNow! Continuous Integration
 
 This repository contains required files to conduct CI/CD for sNow! Cluster Manager.
 

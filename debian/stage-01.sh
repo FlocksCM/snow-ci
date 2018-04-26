@@ -42,15 +42,19 @@ if [[ ! -e /sNow/snow-tools/etc/snow.conf ]]; then
 fi
 cd /sNow/snow-tools
 export NFS_SERVER=beegfs01
+export SNOW_EULA=accepted
 ./install.sh
 
 ### sNow! Configuration
 if [[ ! -e /sNow/snow-tools/etc/snow.conf ]]; then
     cp -p /root/snow-ci/debian/snow.conf /sNow/snow-tools/etc/
     cp -p /root/snow-ci/debian/active-domains.conf /sNow/snow-tools/etc/
+    source /etc/profile.d/snow.sh
+    snow init
+else
+    source /etc/profile.d/snow.sh
+    snow init force
 fi
-source /etc/profile.d/snow.sh
-snow init
 
 ### Enable stage 02
 #systemctl enable first_boot
