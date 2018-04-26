@@ -47,4 +47,5 @@ chown root /usr/local/first_boot
 
 ### Enable stage 01
 cp -p /root/snow-ci/debian/stage-01.sh /usr/local/first_boot/
+chmod 700 /usr/local/first_boot/stage-01.sh
 systemctl enable first_boot
