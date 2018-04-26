@@ -53,7 +53,7 @@ chmod 700 /usr/local/bin/first_boot
 mkdir -p /usr/local/first_boot
 chmod 700 /usr/local/first_boot
 chown root /usr/local/first_boot
-systemctl enable first_boot
 
 ### Enable stage 01
 cp -p /root/snow-ci/debian/stage-01.sh /usr/local/first_boot/
+systemctl enable first_boot
