@@ -29,6 +29,12 @@ snow deploy slurmdb01
 snow deploy slurm01
 snow deploy monitor01
 snow deploy login01
+snow deploy swarm01
+snow deploy swarm02
+snow deploy one01
+
+### update the memory used by each domain in order to fit the testing node
+sed -i "s|2048|512|g" /sNow/snow-tools/etc/domains/*.cfg
 
 ### Boot Domains
 snow boot domains

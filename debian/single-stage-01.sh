@@ -16,14 +16,14 @@
 ### You should have received a copy of the GNU General Public License
 ### along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ### 
-
+snow_release="opennebula"
 ### sNow! Installation
 cd /root/snow-ci/debian
 cd /sNow/
-git clone http://bitbucket.org/hpcnow/snow-tools.git
+git clone http://bitbucket.org/hpcnow/snow-tools.git -b ${snow_release}
 cd /sNow/snow-tools
 export SNOW_EULA=accepted
-./install.sh
+./install.sh ${snow_release}
 #apt install linux-headers-$(uname -r) -y
 
 ### sNow! Configuration
