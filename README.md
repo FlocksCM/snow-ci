@@ -18,7 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 sNow! Cluster Suite is an opensource project developed by Jordi Blasco <jordi.blasco@hpcnow.com>
 For more information, visit the official website: www.hpcnow.com/snow
 ```
-# sNow! Continuous Integration
+# sNow! Continuous Integration and Continuous Deployment
 
 This repository contains required files to conduct CI/CD for sNow! Cluster Manager.
 
@@ -34,7 +34,7 @@ The credentials are updated via Jenkins. If you want to test a complete deployme
 2. Install BeeGFS clients
 3. Install sNow! Cluster Manager
 4. Setup sNow! Cluster Manager
-5. Deploy common domains*
+5. Deploy common domains
 6. Deploy golden node*
 7. Install minimal toolchain (foss 2018a) and Supermagic
 8. Generate stateless image
