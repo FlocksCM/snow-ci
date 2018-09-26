@@ -17,12 +17,13 @@
 ### along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
+### Fetching CI setup
 version=master
 cd /root
 git clone https://github.com/HPCNow/sNow.git
-cd snow-tools
-wget -O snow.conf "https://raw.githubusercontent.com/HPCNow/snow-ci/master/ubuntu/snow.conf" --no-check-certificate
-if [[ -e /sNow/snow-tools/etc/snow.conf ]]; then
+cd sNow
+cp -p /root/sNow/tests/ci/ubuntu/single-snow.conf . 
+if [[ -e /sNow/etc/snow.conf ]]; then
     wget -O /etc/netplan/01-netcfg.yaml "https://raw.githubusercontent.com/HPCNow/snow-ci/master/ubuntu/netplan_snow02" --no-check-certificate
 else
     wget -O /etc/netplan/01-netcfg.yaml "https://raw.githubusercontent.com/HPCNow/snow-ci/master/ubuntu/netplan_snow01" --no-check-certificate
@@ -30,11 +31,20 @@ fi
 export SNOW_EULA=accepted
 ./install.sh $version
 
+apt update
+apt upgrade -y
 
-cd /root
-wget -O hosts "https://raw.githubusercontent.com/HPCNow/snow-ci/master/ubuntu/hosts" --no-check-certificate
-cat ./hosts >> /etc/hosts
-wget -O corosync.conf "https://raw.githubusercontent.com/HPCNow/snow-ci/master/ubuntu/corosync.conf" --no-check-certificate
-wget -O active-domains.conf "https://raw.githubusercontent.com/HPCNow/snow-ci/master/ubuntu/active-domains.conf" --no-check-certificate
-wget -O setup_domains_ha.sh "https://raw.githubusercontent.com/HPCNow/snow-ci/master/ubuntu/setup_domains_ha.sh" --no-check-certificate
-chmod 700 setup_domains_ha.sh
+cat /root/sNow/tests/ci/ubuntu/hosts >> /etc/hosts
+
+### Enable First Boot actions
+cp -p /root/sNow/tests/ci/ubuntu/first_boot.service /lib/systemd/system/
+cp -p /root/sNow/tests/ci/ubuntu/first_boot /usr/local/bin/first_boot
+chmod 700 /usr/local/bin/first_boot
+mkdir -p /usr/local/first_boot
+chmod 700 /usr/local/first_boot
+chown root /usr/local/first_boot
+
+### Enable stage 01
+cp -p /root/sNow/test/ci/ubuntu/single-stage-01.sh /usr/local/first_boot/
+chmod 700 /usr/local/first_boot/single-stage-01.sh
+systemctl enable first_boot
