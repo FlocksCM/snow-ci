@@ -12,7 +12,7 @@ network:
   bridges:
     xpub0:
       interfaces: [ enp5s0f1 ]
-      dhcp: yes
+      dhcp4: yes
     xsnow0:
       interfaces: [ enp5s0f0 ]
       addresses:
